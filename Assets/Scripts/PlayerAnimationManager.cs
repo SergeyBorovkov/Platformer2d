@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Animator))]
-public class Jump : MonoBehaviour
+public class PlayerAnimationManager : MonoBehaviour
 {
     private Animator _animator;
     private PlayerMovement _movement;
@@ -17,7 +17,9 @@ public class Jump : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && _movement.IsGrounded)        
-            _animator.SetTrigger("Jump");        
+        _animator.SetFloat("Speed", Mathf.Abs(_movement.Speed));
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            _animator.SetTrigger("Jump"); 
     }
 }
